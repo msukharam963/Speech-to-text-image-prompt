@@ -97,7 +97,7 @@ height = st.slider("Height", min_value=256, max_value=1024, value=512, step=64)
 
 prompt = st.text_input("📝 Type your image description prompt here:")
 
-if st.button("Generate Image"):
+'''if st.button("Generate Image"):
     if not prompt.strip():
         st.error("Please enter a valid prompt.")
     else:
@@ -109,9 +109,9 @@ if st.button("Generate Image"):
         st.image(Image.open(img_path), caption="✨ AI-Generated Image", use_column_width=True)
 
         with open(img_path, "rb") as f:
-            st.download_button("📥 Download Image", f, "generated_image.png", mime="image/png")
+            st.download_button("📥 Download Image", f, "generated_image.png", mime="image/png")'''
 
-'''if st.button("Start Speaking", on_click=None):
+if st.button("Start Speaking", on_click=None):
     # Play beep
     #play_beep("assets/beep.mp3")
     
@@ -133,4 +133,3 @@ if st.button("Generate Image"):
         #Download image
         with open(img_path, "rb") as f:
             st.download_button("📥 Download Image", f, "generated_image.png", mime="image/png")
-'''
