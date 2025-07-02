@@ -1,5 +1,5 @@
 import streamlit as st
-from speech_to_text import get_spoken_text
+#from speech_to_text import get_spoken_text
 from image_gen import generate_image
 from PIL import Image
 import time
@@ -95,9 +95,25 @@ st.markdown("### 🖼️ Select Image Resolution")
 width = st.slider("Width", min_value=256, max_value=1024, value=512, step=64)
 height = st.slider("Height", min_value=256, max_value=1024, value=512, step=64)
 
-if st.button("Start Speaking", on_click=None):
+prompt = st.text_input("📝 Type your image description prompt here:")
+
+if st.button("Generate Image"):
+    if not prompt.strip():
+        st.error("Please enter a valid prompt.")
+    else:
+        styled_prompt = apply_style(prompt, style)
+
+        with st.spinner("🧠 Generating image..."):
+            img_path = generate_image(styled_prompt, width, height)
+
+        st.image(Image.open(img_path), caption="✨ AI-Generated Image", use_column_width=True)
+
+        with open(img_path, "rb") as f:
+            st.download_button("📥 Download Image", f, "generated_image.png", mime="image/png")
+
+'''if st.button("Start Speaking", on_click=None):
     # Play beep
-    play_beep("assets/beep.mp3")
+    #play_beep("assets/beep.mp3")
     
     with st.spinner('🎙️ Listening...'):
         prompt = get_spoken_text()
@@ -117,3 +133,4 @@ if st.button("Start Speaking", on_click=None):
         #Download image
         with open(img_path, "rb") as f:
             st.download_button("📥 Download Image", f, "generated_image.png", mime="image/png")
+'''
