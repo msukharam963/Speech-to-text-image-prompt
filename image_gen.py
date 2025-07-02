@@ -7,6 +7,7 @@ def generate_image(prompt,width=512, height=512):
     pipe = StableDiffusionPipeline.from_pretrained(
         "CompVis/stable-diffusion-v1-4",
         torch_dtype=torch.float16,
+        low_cpu_mem_usage=True
     ).to("cuda")
     seed= random.randint(1, 9999999)
     prompt = prompt
